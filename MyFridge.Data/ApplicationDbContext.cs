@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MyFridge.Data.Models;
 
 namespace MyFridge.Data
 {
@@ -9,5 +10,7 @@ namespace MyFridge.Data
             : base(options)
         {
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }
