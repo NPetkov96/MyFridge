@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFridge", "MyFridge\MyFridge.csproj", "{EA336FF9-AD03-4457-9FE8-71D85124AAE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFridge.Data", "MyFridge.Data\MyFridge.Data.csproj", "{09872193-AA98-455A-988A-3C1956EFF626}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFridge.Web", "MyFridge.Web\MyFridge.Web.csproj", "{32C0E55A-A2A4-42C3-A7EE-570C9AB1A8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFridge.Common", "MyFridge.Common\MyFridge.Common.csproj", "{4C226FD9-9202-4F10-86CB-A6612499B0FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{32C0E55A-A2A4-42C3-A7EE-570C9AB1A8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C0E55A-A2A4-42C3-A7EE-570C9AB1A8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32C0E55A-A2A4-42C3-A7EE-570C9AB1A8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C226FD9-9202-4F10-86CB-A6612499B0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C226FD9-9202-4F10-86CB-A6612499B0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C226FD9-9202-4F10-86CB-A6612499B0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C226FD9-9202-4F10-86CB-A6612499B0FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

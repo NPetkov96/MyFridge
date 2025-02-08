@@ -12,7 +12,7 @@ using MyFridge.Data;
 namespace MyFridge.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250208095744_Initial")]
+    [Migration("20250209102332_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -228,6 +228,9 @@ namespace MyFridge.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Categories")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -244,6 +247,21 @@ namespace MyFridge.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("UsersProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -295,6 +313,35 @@ namespace MyFridge.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
+                {
+                    b.HasOne("MyFridge.Data.Models.Product", "Product")
+                        .WithMany("UserProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFridge.Data.Models.ApplicationUser", "User")
+                        .WithMany("UserProducts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("UserProducts");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.Product", b =>
+                {
+                    b.Navigation("UserProducts");
                 });
 #pragma warning restore 612, 618
         }

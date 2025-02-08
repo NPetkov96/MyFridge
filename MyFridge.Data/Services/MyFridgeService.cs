@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyFridge.Common.Enums;
 using MyFridge.Data.Models;
 using MyFridge.Data.Repository.Interfaces;
 using MyFridge.Data.Services.Interfaces;
@@ -8,28 +9,49 @@ namespace MyFridge.Data.Services
 {
     public class MyFridgeService : IMyFridgeService
     {
-        private readonly IRepository<Product,Guid> _productRepository;
+        private readonly IRepository<Product, Guid> _productRepository;
 
-        public MyFridgeService(IRepository<Product,Guid> productRepository)
+        public MyFridgeService(IRepository<Product, Guid> productRepository)
         {
             this._productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<AllProductsViewModel>> GetAllProductsAsync()
+        public async Task AddProductAsync(AddProductViewModel model,Guid userId)
+        {
+            Guid newId = Guid.NewGuid();
+            var product = new Product()
+            {
+                Id = newId,
+                Name = model.Name,
+                Categories = (ProductsCategories)Enum.Parse(typeof(ProductsCategories), model.Category),
+                UserProducts = new List<UserProduct>
+                {
+                    new UserProduct()
+                    {
+                        ProductId = newId,
+                        UserId = userId
+                    }
+                }
+            };
+
+            await _productRepository.AddAsync(product);
+        }
+
+        public async Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId)
         {
             var products = await _productRepository
                 .GetAllAttached()
                 .ToListAsync();
 
             var viewMoldeProducts = products
-                .Select(p=> new AllProductsViewModel
-            {
-                    Name=p.Name,
-            })
+                .Select(p => new ShowProductsViewModel
+                {
+                    Name = p.Name,
+                    Category = p.Categories.ToString(),
+                })
                 .ToList();
 
             return viewMoldeProducts;
         }
-
     }
 }
