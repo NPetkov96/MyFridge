@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MyFridge.Common.Enums;
 
 namespace MyFridge.Data.Models
 {
@@ -14,6 +15,9 @@ namespace MyFridge.Data.Models
         public double Quantity { get; set; }
 
         public string? Notes { get; set; }
+
+        [Required]
+        public ProductsCategories Categories { get; set; }
 
         public bool IsDeleted { get; set; } = false;
     }

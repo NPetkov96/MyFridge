@@ -17,5 +17,17 @@ namespace MyFridge.Controllers
             var products = await _myFridgeService.GetAllProductsAsync();
             return View(products);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddProduct()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddProduct()
+        //{
+        //    return View();
+        //}
     }
 }

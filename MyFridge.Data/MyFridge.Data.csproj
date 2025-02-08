@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyFridge.Common\MyFridge.Common.csproj" />
     <ProjectReference Include="..\MyFridge.Web\MyFridge.Web.csproj" />
   </ItemGroup>
 

@@ -4,6 +4,6 @@ namespace MyFridge.Data.Models
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
-      
+
     }
 }

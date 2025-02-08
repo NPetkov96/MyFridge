@@ -1,4 +1,5 @@
 ﻿@using MyFridge.Web.ProductsViewModels
+@using MyFridge.Common.Enums
 @model List<AllProductsViewModel>
 
 @{
@@ -6,6 +7,20 @@
 }
 
 <h2 class="mb-4">Налични продукти</h2>
+
+<!-- Филтър за категории -->
+<form method="get" asp-action="Index" asp-controller="MyFridge">
+    <div class="mb-3">
+        <label for="categoryFilter" class="form-label">Филтрирай по категория:</label>
+        <select id="categoryFilter" name="category" class="form-select" onchange="this.form.submit()">
+            <option value="">-- Всички категории --</option>
+            @foreach (var category in Enum.GetValues(typeof(ProductsCategories)))
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+    </div>
+</form>
 
 @if (!Model.Any())
 {
@@ -17,6 +32,7 @@ else
         <thead class="table-dark">
             <tr>
                 <th>Name</th>
+                <th>Category</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +40,7 @@ else
             {
                 <tr>
                     <td>@product.Name</td>
+                    <td>@product.Category</td>
                 </tr>
             }
         </tbody>

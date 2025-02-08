@@ -8,9 +8,9 @@ namespace MyFridge.Data.Services
 {
     public class MyFridgeService : IMyFridgeService
     {
-        private readonly IRepository<Product,Guid> _productRepository;
+        private readonly IRepository<Product, Guid> _productRepository;
 
-        public MyFridgeService(IRepository<Product,Guid> productRepository)
+        public MyFridgeService(IRepository<Product, Guid> productRepository)
         {
             this._productRepository = productRepository;
         }
@@ -22,10 +22,11 @@ namespace MyFridge.Data.Services
                 .ToListAsync();
 
             var viewMoldeProducts = products
-                .Select(p=> new AllProductsViewModel
-            {
-                    Name=p.Name,
-            })
+                .Select(p => new AllProductsViewModel
+                {
+                    Name = p.Name,
+                    Category = p.Categories.ToString(),
+                })
                 .ToList();
 
             return viewMoldeProducts;
