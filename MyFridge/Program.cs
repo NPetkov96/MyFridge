@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyFridge.Data;
 using MyFridge.Data.Models;
+using MyFridge.Data.Repository;
+using MyFridge.Data.Repository.Interfaces;
+using MyFridge.Data.Services.Interfaces;
+using MyFridge.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +33,12 @@ builder.Services
 
 builder.Services
     .AddRazorPages();
+
+
+builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();
+
+
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
 var app = builder.Build();
 

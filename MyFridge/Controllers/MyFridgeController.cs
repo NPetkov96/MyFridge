@@ -1,15 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyFridge.Data.Models;
+using MyFridge.Data.Services.Interfaces;
 
 namespace MyFridge.Controllers
 {
     public class MyFridgeController : Controller
     {
-        //public Task<IActionResult> Index()
-        //{
-        //    List<Product> products = await _context.Products.ToListAsync();
-        //    return View(products);
-        //}
+        private readonly IMyFridgeService _myFridgeService;
+
+        public MyFridgeController(IMyFridgeService myFridgeService)
+        {
+            this._myFridgeService = myFridgeService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var products = await _myFridgeService.GetAllProductsAsync();
+            return View(products);
+        }
     }
 }
