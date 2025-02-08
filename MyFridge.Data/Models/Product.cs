@@ -5,7 +5,7 @@ namespace MyFridge.Data.Models
     public class Product
     {
         [Key]
-        public string Id { get; set; } = null!;
+        public Guid Id { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;
