@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MyFridge.Data/Migrations/20250208213445_CategoriesAdded.cs

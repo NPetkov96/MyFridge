@@ -30,9 +30,6 @@ namespace MyFridge.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductViewModel model)
         {
-            //var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //var userGuid = Guid.Parse(userId!);
-
             await _myFridgeService.AddProductAsync(model, GetUserId());
             return View(nameof(Index));
         }
