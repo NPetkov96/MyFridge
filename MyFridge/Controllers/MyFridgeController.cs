@@ -21,17 +21,17 @@ namespace MyFridge.Controllers
             return View(products);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> AddProduct()
-        {
-            return View(nameof(Index));
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> AddProduct()
+        //{
+        //    return View(nameof(Index));
+        //}
 
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductViewModel model)
         {
             await _myFridgeService.AddProductAsync(model, GetUserId());
-            return View(nameof(Index));
+            return RedirectToAction(nameof(Index)); ;
         }
 
         private Guid GetUserId()
