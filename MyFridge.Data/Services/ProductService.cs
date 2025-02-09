@@ -41,8 +41,6 @@ namespace MyFridge.Data.Services
         {
             var products = await _productRepository
                 .GetAllAttached()
-                .Include(p => p.UserProducts)
-                .Where(p => p.UserProducts.Any(u => u.UserId == userId))
                 .ToListAsync();
 
             var viewMoldeProducts = products

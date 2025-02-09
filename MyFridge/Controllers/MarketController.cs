@@ -6,16 +6,16 @@ namespace MyFridge.Controllers
 {
     public class MarketController : Controller
     {
-        private readonly IMyFridgeService _myFridgeService;
+        private readonly IProductService _productService;
 
-        public MarketController(IMyFridgeService myFridgeService)
+        public MarketController(IProductService productService)
         {
-            this._myFridgeService = myFridgeService;
+            this._productService = productService;
         }
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var products = await _myFridgeService.GetAllProductsAsync(Guid.Parse(userId!));
+            var products = await _productService.GetAllProductsAsync(Guid.Parse(userId!));
             return View(products);
         }
 

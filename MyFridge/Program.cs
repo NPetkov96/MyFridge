@@ -36,6 +36,7 @@ builder.Services
 
 
 builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
