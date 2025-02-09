@@ -20,7 +20,9 @@ namespace MyFridge.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UserProductConfiguration());
+            modelBuilder
+                .ApplyConfiguration(new ProductConfiguration())
+                .ApplyConfiguration(new UserProductConfiguration());
         }
 
     }
