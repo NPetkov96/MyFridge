@@ -49,6 +49,7 @@ namespace MyFridge.Data.Services
                     Name = p.Name,
                     Category = p.Categories.ToString(),
                 })
+                .OrderBy(p=>p.Name)
                 .ToList();
 
             return viewMoldeProducts;
