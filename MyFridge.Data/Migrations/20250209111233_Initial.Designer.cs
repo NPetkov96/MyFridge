@@ -12,7 +12,7 @@ using MyFridge.Data;
 namespace MyFridge.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250209102332_Initial")]
+    [Migration("20250209111233_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
