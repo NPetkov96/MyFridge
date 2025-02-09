@@ -21,12 +21,6 @@ namespace MyFridge.Controllers
             return View(products);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> AddProduct()
-        //{
-        //    return View(nameof(Index));
-        //}
-
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductViewModel model)
         {
