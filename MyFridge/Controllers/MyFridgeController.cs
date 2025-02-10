@@ -22,10 +22,10 @@ namespace MyFridge.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(AddProductViewModel model)
+        public async Task<IActionResult> AddProductInFridge(Guid procutId)
         {
-            await _myFridgeService.AddProductAsync(model, GetUserId());
-            return RedirectToAction(nameof(Index)); ;
+            await _myFridgeService.AddProductAsync(procutId, GetUserId());
+            return RedirectToAction(nameof(Index));
         }
 
         private Guid GetUserId()

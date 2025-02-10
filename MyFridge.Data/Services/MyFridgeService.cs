@@ -10,44 +10,47 @@ namespace MyFridge.Data.Services
     public class MyFridgeService : IMyFridgeService
     {
         private readonly IRepository<Product, Guid> _productRepository;
+        private readonly IRepository<UserProduct, Guid> _userProductRepository;
 
-        public MyFridgeService(IRepository<Product, Guid> productRepository)
+        public MyFridgeService(IRepository<Product, Guid> productRepository, IRepository<UserProduct, Guid> userProductRepository)
         {
             this._productRepository = productRepository;
+            this._userProductRepository = userProductRepository;
         }
 
-        public async Task AddProductAsync(AddProductViewModel model,Guid userId)
+        public async Task AddProductAsync(Guid productId, Guid userId)
         {
-            Guid newId = Guid.NewGuid();
-            var product = new Product()
+            //var product = await _productRepository.FirstOrDefaultAsync(p => p.Id == productId);
+            //product.UserProducts = new List<UserProduct>
+            //{
+            //   new UserProduct()
+            //   {
+            //       ProductId = product.Id,
+            //       UserId = userId
+            //   }
+            //};
+
+            var userProdcut = new UserProduct()
             {
-                Id = newId,
-                Name = model.Name,
-                Categories = (ProductsCategories)Enum.Parse(typeof(ProductsCategories), model.Category),
-                UserProducts = new List<UserProduct>
-                {
-                    new UserProduct()
-                    {
-                        ProductId = newId,
-                        UserId = userId
-                    }
-                }
+                ProductId = productId,
+                UserId = userId
             };
 
-            await _productRepository.AddAsync(product);
+            await _userProductRepository.AddAsync(userProdcut);
         }
 
         public async Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId)
         {
             var products = await _productRepository
                 .GetAllAttached()
-                .Include(p=>p.UserProducts)
-                .Where(p=>p.UserProducts.Any(u=>u.UserId == userId))
+                .Include(p => p.UserProducts)
+                .Where(p => p.UserProducts.Any(u => u.UserId == userId))
                 .ToListAsync();
 
             var viewMoldeProducts = products
                 .Select(p => new ShowProductsViewModel
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Category = p.Categories.ToString(),
                 })

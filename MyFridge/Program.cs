@@ -34,12 +34,10 @@ builder.Services
 builder.Services
     .AddRazorPages();
 
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
 builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
-
-builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
 var app = builder.Build();
 

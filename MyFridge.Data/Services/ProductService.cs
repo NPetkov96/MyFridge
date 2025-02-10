@@ -46,10 +46,11 @@ namespace MyFridge.Data.Services
             var viewMoldeProducts = products
                 .Select(p => new ShowProductsViewModel
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Category = p.Categories.ToString(),
                 })
-                .OrderBy(p=>p.Name)
+                .OrderBy(p => p.Name)
                 .ToList();
 
             return viewMoldeProducts;

@@ -5,6 +5,6 @@ namespace MyFridge.Data.Services.Interfaces
     public interface IMyFridgeService
     {
         Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId);
-        Task AddProductAsync(AddProductViewModel model, Guid userId);
+        Task AddProductAsync(Guid productId, Guid userId);
     }
 }

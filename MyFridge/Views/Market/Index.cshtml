@@ -68,6 +68,12 @@ else
                 <tr>
                     <td>@product.Name</td>
                     <td>@product.Category</td>
+                    <td>
+                        <form method="post" asp-action="AddProductInFridge" asp-controller="MyFridge">
+                            <input type="hidden" name="procutId" value="@product.Id" />
+                            <button type="submit" class="btn btn-success">Добави в хладилника</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
