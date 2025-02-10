@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MyFridge.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -175,6 +175,24 @@ namespace MyFridge.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShoppingLists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingLists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingLists_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UsersProducts",
                 columns: table => new
                 {
@@ -194,6 +212,31 @@ namespace MyFridge.Data.Migrations
                         name: "FK_UsersProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingListProducts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ShoppingListId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingListProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingListProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingListProducts_ShoppingLists_ShoppingListId",
+                        column: x => x.ShoppingListId,
+                        principalTable: "ShoppingLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -265,6 +308,22 @@ namespace MyFridge.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShoppingListProducts_ProductId",
+                table: "ShoppingListProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingListProducts_ShoppingListId",
+                table: "ShoppingListProducts",
+                column: "ShoppingListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingLists_UserId",
+                table: "ShoppingLists",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UsersProducts_ProductId",
                 table: "UsersProducts",
                 column: "ProductId");
@@ -289,16 +348,22 @@ namespace MyFridge.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ShoppingListProducts");
+
+            migrationBuilder.DropTable(
                 name: "UsersProducts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "ShoppingLists");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

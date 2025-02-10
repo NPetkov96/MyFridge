@@ -428,6 +428,44 @@ namespace MyFridge.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MyFridge.Data.Models.ShoppingList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("ShoppingLists");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.ShoppingListProducts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ShoppingListId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingListId");
+
+                    b.ToTable("ShoppingListProducts");
+                });
+
             modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -494,6 +532,36 @@ namespace MyFridge.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyFridge.Data.Models.ShoppingList", b =>
+                {
+                    b.HasOne("MyFridge.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.ShoppingListProducts", b =>
+                {
+                    b.HasOne("MyFridge.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFridge.Data.Models.ShoppingList", "ShoppingList")
+                        .WithMany("ShoppingListProducts")
+                        .HasForeignKey("ShoppingListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ShoppingList");
+                });
+
             modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
                 {
                     b.HasOne("MyFridge.Data.Models.Product", "Product")
@@ -521,6 +589,11 @@ namespace MyFridge.Data.Migrations
             modelBuilder.Entity("MyFridge.Data.Models.Product", b =>
                 {
                     b.Navigation("UserProducts");
+                });
+
+            modelBuilder.Entity("MyFridge.Data.Models.ShoppingList", b =>
+                {
+                    b.Navigation("ShoppingListProducts");
                 });
 #pragma warning restore 612, 618
         }

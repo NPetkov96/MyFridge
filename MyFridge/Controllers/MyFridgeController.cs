@@ -25,7 +25,7 @@ namespace MyFridge.Controllers
         public async Task<IActionResult> AddProductInFridge(Guid procutId)
         {
             await _myFridgeService.AddProductAsync(procutId, GetUserId());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),"Market");
         }
 
         private Guid GetUserId()
