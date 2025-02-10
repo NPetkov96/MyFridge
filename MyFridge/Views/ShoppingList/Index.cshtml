@@ -6,27 +6,25 @@
     ViewData["Title"] = "Начална страница";
 }
 
+<div class="d-flex">
     <!-- Дясна секция за списъка -->
     <div class="ms-4" style="width: 300px;">
         <h4>Създаден списък</h4>
         <div id="shoppingListSection" class="border p-3 bg-light">
-            @if (TempData["ShoppingList"] != null)
+            @if (Model != null && Model.Any())
             {
-                var shoppingList = TempData["ShoppingList"] as List<string>;
-
-                if (shoppingList != null && shoppingList.Any())
-                {
-                    <ul>
-                        @foreach (var item in shoppingList)
-                        {
-                            <li>@item</li>
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <p>Все още няма добавени продукти.</p>
-                }
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            @item.Name (@item.Category)
+                            <form method="post" asp-action="RemoveFromShoppingList" asp-controller="MyFridge" style="display:inline;">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">X</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
             }
             else
             {

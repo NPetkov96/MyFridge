@@ -8,57 +8,45 @@ namespace MyFridge.Data.Services
 {
     public class ShoppingListService : IShoppingListService
     {
-        private readonly IRepository<ShoppingListProducts, Guid> _productsListRepository;
+        private readonly IRepository<ShoppingListProducts, Guid> _listProductRepository;
+        private readonly IRepository<ProductService, Guid> _productRepository;
 
-        public ShoppingListService(IRepository<ShoppingListProducts, Guid> productsListRepository)
+        public ShoppingListService(IRepository<ShoppingListProducts, Guid> productsListRepository, IRepository<ProductService, Guid> productRepository)
         {
-            this._productsListRepository = productsListRepository;
+            this._listProductRepository = productsListRepository;
+            this._productRepository = productRepository;
         }
 
         public async Task AddProductInShoppingList(Guid productId, Guid userId)
         {
+            //var product = _productRepository.FirstOrDefaultAsync(p=p=>p.ProductId==productId);
 
-            //var userShoppingList = _shoppingListRepository.FirstOrDefaultAsync(sl => sl.UserId == userId);
-            //if (userShoppingList == null)
-            //{
-            //    userShoppingList = new ShoppingList()
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        ShoppingListProducts = new ShoppingListProducts()
-            //        {
-            //            Id = Guid.NewGuid()
-            //        }
-            //    };
-            //}
+            var listProduct = new ShoppingListProducts()
+            {
+                ProductId = productId,
+                UserId = userId
+            };
 
-
-
-
-            //var userList = new ShoppingListProducts()
-            //{
-            //    ProductId = productId,
-            //    ShoppingList = new ShoppingList()
-            //    {
-            //        UserId = userId,
-            //    }
-            //};
-
-            //await _shoppingListRepository.AddAsync(userList);
+           await _listProductRepository.AddAsync(listProduct);
         }
 
-        public Task<List<ShowProductsViewModel>> GetAllShoppingListProducts(Guid userId)
+        public async Task<List<ShowProductsViewModel>> GetAllShoppingListProducts(Guid userId)
         {
-            var shoppinList = _productsListRepository.GetAllAttached().Where(l => l.UserId == userId);
-
-            var productList = shoppinList
-                .Select(l=> new ShowProductsViewModel()
-                {
-                    //Name = l.Product.Name,
-                    //Category = l.Product.Categories.ToString(),
-                })
+            var shoppinList = await _listProductRepository
+                .GetAllAttached()
+                .Include(p => p.Product)
+                .Where(l => l.UserId == userId)
                 .ToListAsync();
 
-            return productList;
+            var productListViewModel = shoppinList
+                .Select(l=> new ShowProductsViewModel()
+                {
+                    Name = l.Product.Name,
+                    Category = l.Product.Categories.ToString(),
+                })
+                .ToList();
+
+            return productListViewModel;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace MyFridge.Data.Services
                 .Where(p => p.UserProducts.Any(u => u.UserId == userId))
                 .ToListAsync();
 
-            var viewMoldeProducts = products
+            var viewModelProducts = products
                 .Select(p => new ShowProductsViewModel
                 {
                     Id = p.Id,
@@ -56,7 +56,7 @@ namespace MyFridge.Data.Services
                 })
                 .ToList();
 
-            return viewMoldeProducts;
+            return viewModelProducts;
         }
     }
 }
