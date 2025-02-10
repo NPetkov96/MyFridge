@@ -22,10 +22,13 @@
                         @if (User.Identity!.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="MyFridge" asp-action="Index">My Fridge</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="MyFridge" asp-action="Index">Моят хладилник</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Market" asp-action="Index">Market</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Market" asp-action="Index">Магазин</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingList" asp-action="Index">Списък</a>
                             </li>
                         }
                     </ul>

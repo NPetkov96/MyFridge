@@ -21,7 +21,9 @@ namespace MyFridge.Data.Models
 
         public bool IsDeleted { get; set; } = false;
 
-        public List<UserProduct> UserProducts { get; set; } = new List<UserProduct>();
+        public ICollection<UserProduct> UserProducts { get; set; } = new List<UserProduct>();
+        public ICollection<ShoppingListProducts> ShoppingListProducts { get; set; } = new List<ShoppingListProducts>();
+
 
     }
 }

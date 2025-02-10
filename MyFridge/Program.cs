@@ -38,6 +38,7 @@ builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
 builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IShoppingListService, ShoppingListService>();
 
 var app = builder.Build();
 

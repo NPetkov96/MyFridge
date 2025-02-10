@@ -1,0 +1,37 @@
+﻿@using MyFridge.Web.ProductsViewModels
+@using MyFridge.Common.Enums
+@model List<ShowProductsViewModel>
+
+@{
+    ViewData["Title"] = "Начална страница";
+}
+
+    <!-- Дясна секция за списъка -->
+    <div class="ms-4" style="width: 300px;">
+        <h4>Създаден списък</h4>
+        <div id="shoppingListSection" class="border p-3 bg-light">
+            @if (TempData["ShoppingList"] != null)
+            {
+                var shoppingList = TempData["ShoppingList"] as List<string>;
+
+                if (shoppingList != null && shoppingList.Any())
+                {
+                    <ul>
+                        @foreach (var item in shoppingList)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Все още няма добавени продукти.</p>
+                }
+            }
+            else
+            {
+                <p>Все още няма добавени продукти.</p>
+            }
+        </div>
+    </div>
+</div>

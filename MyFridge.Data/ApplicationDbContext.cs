@@ -10,7 +10,6 @@ namespace MyFridge.Data
     {
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<UserProduct> UsersProducts { get; set; } = null!;
-        public DbSet<ShoppingList> ShoppingLists { get; set; } = null!;
         public DbSet<ShoppingListProducts> ShoppingListsProducts { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

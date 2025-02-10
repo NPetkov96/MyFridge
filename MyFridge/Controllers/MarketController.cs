@@ -36,6 +36,16 @@ namespace MyFridge.Controllers
             return RedirectToAction(nameof(Index)); ;
         }
 
+        [HttpPost]
+        public IActionResult AddProductToShoppingList(string productName)
+        {
+            var shoppingList = TempData["ShoppingList"] as List<string> ?? new List<string>();
+            shoppingList.Add(productName);
+            TempData["ShoppingList"] = shoppingList;
+            return RedirectToAction("Index");
+        }
+
+
         private Guid GetUserId()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
