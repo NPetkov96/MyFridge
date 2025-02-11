@@ -37,6 +37,12 @@ namespace MyFridge.Data.Services
             await _productRepository.AddAsync(product);
         }
 
+        public async Task DeleteProduct(Guid productId)
+        {
+            var product = await _productRepository.GetByIdAsync(productId);
+            await _productRepository.DeleteAsync(product);
+        }
+
         public async Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId)
         {
             var products = await _productRepository

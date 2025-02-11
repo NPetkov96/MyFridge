@@ -4,8 +4,8 @@ namespace MyFridge.Data.Services.Interfaces
 {
     public interface IShoppingListService
     {
-        public Task<List<ShowProductsViewModel>> GetAllShoppingListProducts(Guid userId);
-        public Task AddProductInShoppingList(Guid productId, Guid userId);
-
+        Task<List<ShowProductsViewModel>> GetAllShoppingListProducts(Guid userId);
+        Task AddProductInShoppingList(Guid productId, Guid userId);
+        Task DeleteProductInShoppingList(Guid productId, Guid guid);
     }
 }

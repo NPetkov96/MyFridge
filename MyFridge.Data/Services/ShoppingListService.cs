@@ -30,6 +30,13 @@ namespace MyFridge.Data.Services
            await _listProductRepository.AddAsync(listProduct);
         }
 
+        public async Task DeleteProductInShoppingList(Guid productId, Guid userId)
+        {
+            var userProduct = await _listProductRepository.FirstOrDefaultAsync(p => p.ProductId == productId && p.UserId == userId);
+
+            await _listProductRepository.DeleteAsync(userProduct);
+        }
+
         public async Task<List<ShowProductsViewModel>> GetAllShoppingListProducts(Guid userId)
         {
             var shoppinList = await _listProductRepository
@@ -41,6 +48,7 @@ namespace MyFridge.Data.Services
             var productListViewModel = shoppinList
                 .Select(l=> new ShowProductsViewModel()
                 {
+                    Id = l.ProductId,
                     Name = l.Product.Name,
                     Category = l.Product.Categories.ToString(),
                 })

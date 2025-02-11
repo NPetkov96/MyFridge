@@ -22,10 +22,17 @@ namespace MyFridge.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProductInFridge(Guid procutId)
+        public async Task<IActionResult> AddProductInFridge(Guid productId)
         {
-            await _myFridgeService.AddProductAsync(procutId, GetUserId());
+            await _myFridgeService.AddProductAsync(productId, GetUserId());
             return RedirectToAction(nameof(Index),"Market");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteProductInFridge(Guid productId)
+        {
+            await _myFridgeService.DeleteProductAsync(productId, GetUserId());
+            return RedirectToAction(nameof(Index));
         }
 
         private Guid GetUserId()

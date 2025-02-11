@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyFridge.Common.Enums;
 using MyFridge.Data.Models;
 using MyFridge.Data.Repository.Interfaces;
 using MyFridge.Data.Services.Interfaces;
@@ -20,16 +19,6 @@ namespace MyFridge.Data.Services
 
         public async Task AddProductAsync(Guid productId, Guid userId)
         {
-            //var product = await _productRepository.FirstOrDefaultAsync(p => p.Id == productId);
-            //product.UserProducts = new List<UserProduct>
-            //{
-            //   new UserProduct()
-            //   {
-            //       ProductId = product.Id,
-            //       UserId = userId
-            //   }
-            //};
-
             var userProdcut = new UserProduct()
             {
                 ProductId = productId,
@@ -37,6 +26,13 @@ namespace MyFridge.Data.Services
             };
 
             await _userProductRepository.AddAsync(userProdcut);
+        }
+
+        public async Task DeleteProductAsync(Guid procutId, Guid userId)
+        {
+            var userProduct = await _userProductRepository.FirstOrDefaultAsync(p => p.ProductId == procutId && p.UserId == userId);
+
+            await _userProductRepository.DeleteAsync(userProduct);
         }
 
         public async Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId)

@@ -6,5 +6,6 @@ namespace MyFridge.Data.Services.Interfaces
     {
         Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId);
         Task AddProductAsync(Guid productId, Guid userId);
+        Task DeleteProductAsync(Guid procutId, Guid userId);
     }
 }

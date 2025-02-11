@@ -31,8 +31,9 @@ else
     <table class="table table-bordered mt-4">
         <thead class="table-dark">
             <tr>
-                <th>Name</th>
-                <th>Category</th>
+                <th style="width: 20%;">Име</th>
+                <th style="width: 15%;">Категория</th>
+                <th style="width: 15%;">Действие</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,21 @@ else
                 <tr>
                     <td>@product.Name</td>
                     <td>@product.Category</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <!-- Бутон за премахване от списъка -->
+                            <form method="post" asp-action="DeleteProductInFridge" asp-controller="MyFridge">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Изтрий</button>
+                            </form>
+
+                            <!-- Бутон за добавяне в списъка -->
+                            <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit" class="btn btn-success btn-sm">Добави в кошницата</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>

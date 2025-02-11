@@ -19,9 +19,17 @@ namespace MyFridge.Controllers
             return View(products);
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddProductInShoppingList(Guid productId)
         {
             await _shoppingListService.AddProductInShoppingList(productId,GetUserId());
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteProductInShoppingList(Guid productId)
+        {
+            await _shoppingListService.DeleteProductInShoppingList(productId, GetUserId());
             return RedirectToAction(nameof(Index));
         }
 

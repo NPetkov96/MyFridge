@@ -8,12 +8,12 @@
 
 <div class="d-flex">
     <!-- Основно съдържание -->
-    <div class="flex-grow-1">
+    <div class="table table-bordered table-responsive w-auto mt-4">
         <h2 class="mb-4">Налични продукти</h2>
 
         <!-- Филтър за категории -->
         <form method="get" asp-action="Index" asp-controller="MyFridge">
-            <div class="mb-3">
+            <div class="table table-bordered table-responsive w-auto mt-4">
                 <label for="categoryFilter" class="form-label">Филтрирай по категория:</label>
                 <select id="categoryFilter" name="category" class="form-select" onchange="this.form.submit()">
                     <option value="">-- Всички категории --</option>
@@ -26,8 +26,8 @@
         </form>
 
         <!-- Форма за добавяне на нов продукт -->
-        <h3 class="mt-5">Добави нов продукт</h3>
-        <form method="post" asp-action="AddProduct" asp-controller="MyFridge">
+        <h5 class="table table-bordered table-responsive w-auto mt-5">Добави нов продукт</h5>
+        <form method="post" asp-action="AddProduct" asp-controller="Market">
             <div class="d-flex gap-3 mb-3">
                 <!-- Поле за име на продукта -->
                 <div class="flex-grow-1">
@@ -58,11 +58,12 @@
         }
         else
         {
-            <table class="table table-bordered mt-4">
+            <table class="table table-bordered table-responsive w-auto mt-4">
                 <thead class="table-dark">
                     <tr>
-                        <th>Name</th>
-                        <th>Category</th>
+                        <th>Име на продукта</th>
+                        <th>Категория</th>
+                        <th>Действие</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,14 +73,20 @@
                             <td>@product.Name</td>
                             <td>@product.Category</td>
                             <td>
-                                <form method="post" asp-action="AddProductInFridge" asp-controller="MyFridge">
-                                    <input type="hidden" name="procutId" value="@product.Id" />
-                                    <button type="submit" class="btn btn-success">Добави в хладилника</button>
-                                </form>
-                                <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList">
-                                    <input type="hidden" name="productId" value="@product.Id" />
-                                    <button type="submit" class="btn btn-success">Добави в списък</button>
-                                </form>
+                                <div class="d-flex gap-3">
+                                    <form method="post" asp-action="AddProductInFridge" asp-controller="MyFridge">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-success">Добави в хладилника</button>
+                                    </form>
+                                    <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-primary">Добави в списък</button>
+                                    </form>
+                                    <form method="post" asp-action="DeleteProduct" asp-controller="Market">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-danger">Изтрий</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -89,7 +96,7 @@
     </div>
 
     <!-- Дясна секция за списъка -->
-   @*  <div class="ms-4" style="width: 300px;">
+     <div class="ms-4" style="width: 300px;">
         <h4>Създаден списък</h4>
         <div id="shoppingListSection" class="border p-3 bg-light">
             @if (TempData["ShoppingList"] != null)
@@ -115,5 +122,5 @@
                 <p>Все още няма добавени продукти.</p>
             }
         </div>
-    </div> *@
+    </div> 
 </div>

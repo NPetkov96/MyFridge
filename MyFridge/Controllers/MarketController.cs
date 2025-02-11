@@ -37,14 +37,11 @@ namespace MyFridge.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProductToShoppingList(string productName)
+        public async Task<IActionResult> DeleteProduct(Guid productId)
         {
-            var shoppingList = TempData["ShoppingList"] as List<string> ?? new List<string>();
-            shoppingList.Add(productName);
-            TempData["ShoppingList"] = shoppingList;
-            return RedirectToAction("Index");
+            await _productService.DeleteProduct(productId);
+            return RedirectToAction(nameof(Index)); ;
         }
-
 
         private Guid GetUserId()
         {
