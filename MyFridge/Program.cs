@@ -34,6 +34,8 @@ builder.Services
 builder.Services
     .AddRazorPages();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
 builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();

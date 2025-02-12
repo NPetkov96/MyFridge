@@ -38,10 +38,19 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="row">
+            <!-- Основно съдържание -->
+            <div class="col-md-8">
+                @RenderBody()
+            </div>
+
+            <!-- Shopping List като страничен панел -->
+            <div class="col-md-4">
+                @await Component.InvokeAsync("ShoppingList")
+            </div>
+        </div>
     </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">

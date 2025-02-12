@@ -1,0 +1,35 @@
+﻿@using MyFridge.Web.ProductsViewModels
+@using MyFridge.Common.Enums
+@model List<ShowProductsViewModel>
+
+@{
+    ViewData["Title"] = "Начална страница";
+}
+
+<div class="d-flex">
+    <!-- Дясна секция за списъка -->
+    <div class="ms-4" style="width: 300px;">
+        <h4>Създаден списък</h4>
+        <div id="shoppingListSection" class="border p-3 bg-light">
+            @if (Model != null && Model.Any())
+            {
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            @item.Name (@item.Category)
+                            <form method="post" asp-action="DeleteProductInShoppingList" asp-controller="ShoppingList" style="display:inline;">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">X</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Все още няма добавени продукти.</p>
+            }
+        </div>
+    </div>
+</div>
