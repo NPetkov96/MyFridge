@@ -38,6 +38,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(BaseRepo<,>));
 
+builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<IMyFridgeService, MyFridgeService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IShoppingListService, ShoppingListService>();

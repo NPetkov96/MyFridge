@@ -1,0 +1,24 @@
+﻿@using MyFridge.Web.RecipeViewModels
+@model List<RecipeViewModel>
+
+<h2>Списък с рецепти</h2>
+
+@foreach (var recipe in Model)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h3 class="card-title">@recipe.Name</h3>
+            <p><strong>Време за приготвяне:</strong> @recipe.Duration</p>
+
+            <h5>Необходими продукти:</h5>
+            <ul>
+                @foreach (var product in recipe.RequiredProducts)
+                {
+                    <li>@product</li>
+                }
+            </ul>
+
+            <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Детайли</a>
+        </div>
+    </div>
+}

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MyFridge.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inittial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,6 +66,20 @@ namespace MyFridge.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recipes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Duration = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    RequiredProducts = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recipes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,6 +263,15 @@ namespace MyFridge.Data.Migrations
                     { new Guid("f63ecbf3-7089-4e53-9d82-49d0a0efb415"), 1, false, "Морков", "Био моркови", 10.0 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Recipes",
+                columns: new[] { "Id", "Duration", "Name", "RequiredProducts" },
+                values: new object[,]
+                {
+                    { new Guid("a6b62c13-d673-4d6f-92c9-9c0f253f7a4b"), "15 минути", "Шопска салата", "[\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\",\"\\u041A\\u0440\\u0430\\u0441\\u0442\\u0430\\u0432\\u0438\\u0446\\u0438\",\"\\u0421\\u0438\\u0440\\u0435\\u043D\\u0435\",\"\\u041B\\u0443\\u043A\",\"\\u0417\\u0435\\u0445\\u0442\\u0438\\u043D\"]" },
+                    { new Guid("d2b5d3c1-5f5b-4a0b-9c3b-1b27c8a441f8"), "30 минути", "Спагети Карбонара", "[\"\\u0421\\u043F\\u0430\\u0433\\u0435\\u0442\\u0438\",\"\\u042F\\u0439\\u0446\\u0430\",\"\\u0411\\u0435\\u043A\\u043E\\u043D\",\"\\u041F\\u0430\\u0440\\u043C\\u0435\\u0437\\u0430\\u043D\",\"\\u0427\\u0435\\u0440\\u0435\\u043D \\u043F\\u0438\\u043F\\u0435\\u0440\"]" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -316,6 +339,9 @@ namespace MyFridge.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Recipes");
 
             migrationBuilder.DropTable(
                 name: "ShoppingListsProducts");

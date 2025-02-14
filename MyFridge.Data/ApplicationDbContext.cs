@@ -11,6 +11,7 @@ namespace MyFridge.Data
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<UserProduct> UsersProducts { get; set; } = null!;
         public DbSet<ShoppingListProducts> ShoppingListsProducts { get; set; } = null!;
+        public DbSet<Recipe> Recipes { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -24,7 +25,8 @@ namespace MyFridge.Data
             modelBuilder
                 .ApplyConfiguration(new ShoppingListConfiguration())
                 .ApplyConfiguration(new ProductConfiguration())
-                .ApplyConfiguration(new UserProductConfiguration());
+                .ApplyConfiguration(new UserProductConfiguration())
+                .ApplyConfiguration(new RecipeConfiguration());
         }
 
     }

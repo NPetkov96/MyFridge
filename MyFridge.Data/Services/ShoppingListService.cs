@@ -9,12 +9,10 @@ namespace MyFridge.Data.Services
     public class ShoppingListService : IShoppingListService
     {
         private readonly IRepository<ShoppingListProducts, Guid> _listProductRepository;
-        private readonly IRepository<ProductService, Guid> _productRepository;
 
-        public ShoppingListService(IRepository<ShoppingListProducts, Guid> productsListRepository, IRepository<ProductService, Guid> productRepository)
+        public ShoppingListService(IRepository<ShoppingListProducts, Guid> productsListRepository)
         {
             this._listProductRepository = productsListRepository;
-            this._productRepository = productRepository;
         }
 
         public async Task AddProductInShoppingList(Guid productId, Guid userId)

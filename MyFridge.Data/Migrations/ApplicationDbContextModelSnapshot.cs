@@ -428,6 +428,47 @@ namespace MyFridge.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MyFridge.Data.Models.Recipe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("_requiredProducts")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("RequiredProducts");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Recipes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d2b5d3c1-5f5b-4a0b-9c3b-1b27c8a441f8"),
+                            Duration = "30 минути",
+                            Name = "Спагети Карбонара",
+                            _requiredProducts = "[\"\\u0421\\u043F\\u0430\\u0433\\u0435\\u0442\\u0438\",\"\\u042F\\u0439\\u0446\\u0430\",\"\\u0411\\u0435\\u043A\\u043E\\u043D\",\"\\u041F\\u0430\\u0440\\u043C\\u0435\\u0437\\u0430\\u043D\",\"\\u0427\\u0435\\u0440\\u0435\\u043D \\u043F\\u0438\\u043F\\u0435\\u0440\"]"
+                        },
+                        new
+                        {
+                            Id = new Guid("a6b62c13-d673-4d6f-92c9-9c0f253f7a4b"),
+                            Duration = "15 минути",
+                            Name = "Шопска салата",
+                            _requiredProducts = "[\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\",\"\\u041A\\u0440\\u0430\\u0441\\u0442\\u0430\\u0432\\u0438\\u0446\\u0438\",\"\\u0421\\u0438\\u0440\\u0435\\u043D\\u0435\",\"\\u041B\\u0443\\u043A\",\"\\u0417\\u0435\\u0445\\u0442\\u0438\\u043D\"]"
+                        });
+                });
+
             modelBuilder.Entity("MyFridge.Data.Models.ShoppingListProducts", b =>
                 {
                     b.Property<Guid>("UserId")
