@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.shopping-list-container {
+    position: sticky;
+    top: 10px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
