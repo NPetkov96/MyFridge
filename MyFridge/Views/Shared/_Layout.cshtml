@@ -45,9 +45,11 @@
             </div>
 
             <!-- Shopping List като страничен панел -->
+            @if(User.Identity != null && User.Identity.IsAuthenticated){
             <div class="col-md-4">
                 @await Component.InvokeAsync("ShoppingList")
             </div>
+            }
         </div>
     </div>
 

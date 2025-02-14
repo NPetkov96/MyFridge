@@ -2,19 +2,18 @@
 {
     public enum ProductsCategories
     {
-        Fruit = 0,
-        Vegetables = 1,
-        Dairy = 2,
-        Meat = 3,
-        Fish = 4,
-        Grains = 5,
-        Beverages = 6,
-        Snacks = 7,
-        Frozen = 8,
-        Canned = 9,
-        Spices = 10,
-        Condiments = 11,
-        Bakery = 12,
-        Other = 13
+        Плодове = 0,
+        Зеленчуци = 1,
+        Млечни = 2,
+        Месо = 3,
+        Риба = 4,
+        Зърна = 5,
+        Напитки = 6,
+        Закуски = 7,
+        Замразени = 8,
+        Консерви = 9,
+        Подправки = 10,
+        Пекарна = 11,
+        Други = 12
     }
 }

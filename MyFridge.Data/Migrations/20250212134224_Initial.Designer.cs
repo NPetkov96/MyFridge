@@ -12,7 +12,7 @@ using MyFridge.Data;
 namespace MyFridge.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250210152808_Initial")]
+    [Migration("20250212134224_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -254,8 +254,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("bd99667c-3aeb-40b9-9590-b53599a5c9f7"),
                             Categories = 0,
                             IsDeleted = false,
-                            Name = "Apple",
-                            Notes = "Fresh and juicy apples",
+                            Name = "Ябълка",
+                            Notes = "Свежи и сочни ябълки",
                             Quantity = 5.0
                         },
                         new
@@ -263,8 +263,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("57286e97-0a7b-4225-a0f3-4499d58fac29"),
                             Categories = 0,
                             IsDeleted = false,
-                            Name = "Banana",
-                            Notes = "Ripe bananas",
+                            Name = "Банан",
+                            Notes = "Узрели банани",
                             Quantity = 6.0
                         },
                         new
@@ -272,8 +272,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("f63ecbf3-7089-4e53-9d82-49d0a0efb415"),
                             Categories = 1,
                             IsDeleted = false,
-                            Name = "Carrot",
-                            Notes = "Organic carrots",
+                            Name = "Морков",
+                            Notes = "Био моркови",
                             Quantity = 10.0
                         },
                         new
@@ -281,8 +281,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("f4eb169a-5894-43b0-8427-acdaa4e0221e"),
                             Categories = 1,
                             IsDeleted = false,
-                            Name = "Broccoli",
-                            Notes = "Fresh green broccoli",
+                            Name = "Броколи",
+                            Notes = "Свежи зелени броколи",
                             Quantity = 2.0
                         },
                         new
@@ -290,8 +290,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("4f2ee850-f944-454e-8c9f-6dc84a12ee0c"),
                             Categories = 2,
                             IsDeleted = false,
-                            Name = "Milk",
-                            Notes = "Full-fat milk",
+                            Name = "Мляко",
+                            Notes = "Пълномаслено мляко",
                             Quantity = 2.0
                         },
                         new
@@ -299,8 +299,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("655a4401-0234-47cc-8ac2-90946669d963"),
                             Categories = 2,
                             IsDeleted = false,
-                            Name = "Cheese",
-                            Notes = "Cheddar cheese block",
+                            Name = "Сирене",
+                            Notes = "Блок чедър сирене",
                             Quantity = 1.0
                         },
                         new
@@ -308,8 +308,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("0425a159-c244-4fd1-84dc-a27466892376"),
                             Categories = 3,
                             IsDeleted = false,
-                            Name = "Chicken Breast",
-                            Notes = "Boneless skinless chicken breast",
+                            Name = "Пилешко филе",
+                            Notes = "Пилешко филе без кожа и кости",
                             Quantity = 2.0
                         },
                         new
@@ -317,8 +317,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("7309db87-eefa-4a95-81ba-ad509f19d7c2"),
                             Categories = 3,
                             IsDeleted = false,
-                            Name = "Ground Beef",
-                            Notes = "Lean ground beef",
+                            Name = "Говежда кайма",
+                            Notes = "Кайма от нетлъсто говеждо",
                             Quantity = 1.0
                         },
                         new
@@ -326,8 +326,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("928d845f-e222-448e-b425-af700ff02d84"),
                             Categories = 4,
                             IsDeleted = false,
-                            Name = "Salmon",
-                            Notes = "Fresh Atlantic salmon fillet",
+                            Name = "Сьомга",
+                            Notes = "Свежо филе от атлантическа сьомга",
                             Quantity = 1.0
                         },
                         new
@@ -335,8 +335,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("c8049172-15e5-4803-82e1-e924700a55e5"),
                             Categories = 5,
                             IsDeleted = false,
-                            Name = "Rice",
-                            Notes = "Basmati rice",
+                            Name = "Ориз",
+                            Notes = "Басмати ориз",
                             Quantity = 5.0
                         },
                         new
@@ -344,8 +344,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("3c6c22e2-9e20-486b-84fb-35febc954f67"),
                             Categories = 5,
                             IsDeleted = false,
-                            Name = "Pasta",
-                            Notes = "Whole wheat pasta",
+                            Name = "Паста",
+                            Notes = "Пълнозърнеста паста",
                             Quantity = 3.0
                         },
                         new
@@ -353,8 +353,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("7c8b4d13-e2b4-40a0-a020-0df92bfca497"),
                             Categories = 6,
                             IsDeleted = false,
-                            Name = "Orange Juice",
-                            Notes = "100% fresh orange juice",
+                            Name = "Портокалов сок",
+                            Notes = "100% пресен портокалов сок",
                             Quantity = 2.0
                         },
                         new
@@ -362,8 +362,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("99cff922-cfad-4899-b3a8-bdefd6eac76d"),
                             Categories = 7,
                             IsDeleted = false,
-                            Name = "Chocolate Bar",
-                            Notes = "Dark chocolate 70%",
+                            Name = "Шоколадов десерт",
+                            Notes = "Тъмен шоколад 70%",
                             Quantity = 2.0
                         },
                         new
@@ -371,8 +371,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("63fc94a1-d8e7-4eca-be83-ba4337d4d2f9"),
                             Categories = 8,
                             IsDeleted = false,
-                            Name = "Frozen Peas",
-                            Notes = "Organic frozen peas",
+                            Name = "Замразен грах",
+                            Notes = "Био замразен грах",
                             Quantity = 1.0
                         },
                         new
@@ -380,8 +380,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("b2b5408a-30fd-4023-bd09-ab64dc650cce"),
                             Categories = 9,
                             IsDeleted = false,
-                            Name = "Canned Tuna",
-                            Notes = "Tuna in olive oil",
+                            Name = "Консервирана риба тон",
+                            Notes = "Риба тон в зехтин",
                             Quantity = 3.0
                         },
                         new
@@ -389,26 +389,26 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("50013858-40fe-441c-9933-d2ff24e8992c"),
                             Categories = 10,
                             IsDeleted = false,
-                            Name = "Salt",
-                            Notes = "Sea salt",
+                            Name = "Сол",
+                            Notes = "Морска сол",
                             Quantity = 1.0
                         },
                         new
                         {
                             Id = new Guid("50a05479-945f-4838-8fac-449b1dd0d71e"),
-                            Categories = 11,
+                            Categories = 10,
                             IsDeleted = false,
-                            Name = "Ketchup",
-                            Notes = "Organic tomato ketchup",
+                            Name = "Кетчуп",
+                            Notes = "Био доматен кетчуп",
                             Quantity = 1.0
                         },
                         new
                         {
                             Id = new Guid("d4c31264-bba5-400c-97f8-559d779b091c"),
-                            Categories = 12,
+                            Categories = 11,
                             IsDeleted = false,
-                            Name = "Bread",
-                            Notes = "Whole grain bread",
+                            Name = "Хляб",
+                            Notes = "Пълнозърнест хляб",
                             Quantity = 1.0
                         },
                         new
@@ -416,8 +416,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("eb330b9e-fe2f-4e29-b87c-ee8ad6e86308"),
                             Categories = 2,
                             IsDeleted = false,
-                            Name = "Eggs",
-                            Notes = "Free-range eggs",
+                            Name = "Яйца",
+                            Notes = "Яйца от свободно отглеждани кокошки",
                             Quantity = 12.0
                         },
                         new
@@ -425,8 +425,8 @@ namespace MyFridge.Data.Migrations
                             Id = new Guid("b83e5f54-f1c9-4731-a08a-975636eae8ce"),
                             Categories = 2,
                             IsDeleted = false,
-                            Name = "Butter",
-                            Notes = "Unsalted butter",
+                            Name = "Масло",
+                            Notes = "Немаслено масло",
                             Quantity = 1.0
                         });
                 });

@@ -23,7 +23,7 @@ namespace MyFridge.Controllers
         public async Task<IActionResult> AddProductInShoppingList(Guid productId)
         {
             await _shoppingListService.AddProductInShoppingList(productId,GetUserId());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), "Market");
         }
 
         [HttpPost]

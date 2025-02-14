@@ -23,7 +23,5 @@ namespace MyFridge.Data.Models
 
         public ICollection<UserProduct> UserProducts { get; set; } = new List<UserProduct>();
         public ICollection<ShoppingListProducts> ShoppingListProducts { get; set; } = new List<ShoppingListProducts>();
-
-
     }
 }
