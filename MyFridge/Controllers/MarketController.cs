@@ -31,7 +31,6 @@ namespace MyFridge.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductViewModel model)
         {
-
             await _productService.AddProductAsync(model);
             return RedirectToAction(nameof(Index)); ;
         }

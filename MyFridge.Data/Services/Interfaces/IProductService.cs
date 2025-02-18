@@ -1,4 +1,5 @@
-﻿using MyFridge.Web.ProductsViewModels;
+﻿using MyFridge.Data.Models;
+using MyFridge.Web.ProductsViewModels;
 
 namespace MyFridge.Data.Services.Interfaces
 {
@@ -7,5 +8,6 @@ namespace MyFridge.Data.Services.Interfaces
         Task<IEnumerable<ShowProductsViewModel>> GetAllProductsAsync(Guid userId);
         Task AddProductAsync(AddProductViewModel model);
         Task DeleteProduct(Guid productId);
+        Task<Product> GetProductByName(string productName);
     }
 }

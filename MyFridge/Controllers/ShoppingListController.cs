@@ -26,6 +26,13 @@ namespace MyFridge.Controllers
             return RedirectToAction(nameof(Index), "Market");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AddProductInShoppingList(string productName)
+        {
+            await _shoppingListService.AddProductInShoppingList(productName, GetUserId());
+            return RedirectToAction(nameof(Index), "Market");
+        }
+
         [HttpPost]
         public async Task<IActionResult> DeleteProductInShoppingList(Guid productId)
         {

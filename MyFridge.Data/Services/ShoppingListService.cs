@@ -9,16 +9,16 @@ namespace MyFridge.Data.Services
     public class ShoppingListService : IShoppingListService
     {
         private readonly IRepository<ShoppingListProducts, Guid> _listProductRepository;
+        private readonly IProductService _productSercice;
 
-        public ShoppingListService(IRepository<ShoppingListProducts, Guid> productsListRepository)
+        public ShoppingListService(IRepository<ShoppingListProducts, Guid> listProductRepository, IProductService productSercice)
         {
-            this._listProductRepository = productsListRepository;
+            this._listProductRepository = listProductRepository;
+            this._productSercice = productSercice;
         }
 
         public async Task AddProductInShoppingList(Guid productId, Guid userId)
         {
-            //var product = _productRepository.FirstOrDefaultAsync(p=p=>p.ProductId==productId);
-
             var listProduct = new ShoppingListProducts()
             {
                 ProductId = productId,
@@ -26,6 +26,23 @@ namespace MyFridge.Data.Services
             };
 
            await _listProductRepository.AddAsync(listProduct);
+        }
+
+        public async Task AddProductInShoppingList(string productName, Guid userId)
+        {
+            var product = await _productSercice.GetProductByName(productName);
+            if (product == null)
+            {
+                return;
+            }
+
+            var listProduct = new ShoppingListProducts()
+            {
+                ProductId = product.Id,
+                UserId = userId
+            };
+
+            await _listProductRepository.AddAsync(listProduct);
         }
 
         public async Task DeleteProductInShoppingList(Guid productId, Guid userId)

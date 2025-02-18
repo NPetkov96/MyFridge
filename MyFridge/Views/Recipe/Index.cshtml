@@ -35,7 +35,7 @@
 
                         @if (!isAvailable)
                         {
-                            <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList" class="ms-2">
+                            <form method="get" asp-action="AddProductInShoppingList" asp-controller="ShoppingList" class="ms-2">
                                 <input type="hidden" name="productName" value="@product" />
                                 <button type="submit" class="btn btn-sm btn-warning">Добави в списък</button>
                             </form>

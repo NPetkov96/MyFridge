@@ -53,5 +53,10 @@ namespace MyFridge.Data.Services
 
             return viewMoldeProducts;
         }
+        Task<Product> IProductService.GetProductByName(string productName)
+        {
+            var product = _productRepository.FirstOrDefaultAsync(p => p.Name == productName);
+            return product;
+        }
     }
 }
