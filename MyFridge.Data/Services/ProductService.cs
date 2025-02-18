@@ -16,7 +16,7 @@ namespace MyFridge.Data.Services
             this._productRepository = productRepository;
         }
 
-        public async Task AddProductAsync(AddProductViewModel model, Guid userId)
+        public async Task AddProductAsync(AddProductViewModel model)
         {
             Guid newId = Guid.NewGuid();
             var product = new Product()
@@ -24,14 +24,6 @@ namespace MyFridge.Data.Services
                 Id = newId,
                 Name = model.Name,
                 Categories = (ProductsCategories)Enum.Parse(typeof(ProductsCategories), model.Category),
-                UserProducts = new List<UserProduct>
-                {
-                    new UserProduct()
-                    {
-                        ProductId = newId,
-                        UserId = userId
-                    }
-                }
             };
 
             await _productRepository.AddAsync(product);
