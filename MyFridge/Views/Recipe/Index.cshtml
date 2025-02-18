@@ -1,9 +1,21 @@
-﻿@using MyFridge.Web.RecipeViewModels
+﻿@using MyFridge.Web.ProductsViewModels
+@using MyFridge.Web.RecipeViewModels
 @model List<RecipeViewModel>
+
+@{
+    var fridgeProducts = ViewData["FridgeProducts"] as List<MyFridge.Web.ProductsViewModels.ShowProductsViewModel>;
+
+    // Сортиране на рецептите по броя на съвпаденията на продуктите
+    var sortedRecipes = Model.OrderByDescending(recipe =>
+        recipe.RequiredProducts.Count(product =>
+            fridgeProducts?.Any(p => p.Name.ToLower() == product.ToLower()) ?? false
+        )
+    ).ToList();
+}
 
 <h2>Списък с рецепти</h2>
 
-@foreach (var recipe in Model)
+@foreach (var recipe in sortedRecipes)
 {
     <div class="card mb-3">
         <div class="card-body">
@@ -12,9 +24,23 @@
 
             <h5>Необходими продукти:</h5>
             <ul>
-                @foreach (var product in recipe.RequiredProducts)
+                @foreach (var product in recipe.RequiredProducts
+               .OrderByDescending(prod => fridgeProducts?.Any(p => p.Name.ToLower() == prod.ToLower()) ?? false))
                 {
-                    <li>@product</li>
+                    // Проверка дали продуктът е наличен в хладилника
+                    bool isAvailable = fridgeProducts?.Any(p => p.Name.ToLower() == product.ToLower()) ?? false;
+
+                    <li class="d-flex align-items-center @(isAvailable ? "text-success" : "text-danger")">
+                        <span>@product</span>
+
+                        @if (!isAvailable)
+                        {
+                            <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList" class="ms-2">
+                                <input type="hidden" name="productName" value="@product" />
+                                <button type="submit" class="btn btn-sm btn-warning">Добави в списък</button>
+                            </form>
+                        }
+                    </li>
                 }
             </ul>
 
