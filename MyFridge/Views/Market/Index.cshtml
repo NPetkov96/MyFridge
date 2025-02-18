@@ -27,27 +27,7 @@
 
         <!-- Форма за добавяне на нов продукт -->
         <h5 class="table table-bordered table-responsive w-auto mt-5">Добави нов продукт</h5>
-        <form method="post" asp-action="AddProduct" asp-controller="Market">
-            <div class="d-flex gap-3 mb-3">
-                <!-- Поле за име на продукта -->
-                <div class="flex-grow-1">
-                    <label for="productName" class="form-label">Име на продукта:</label>
-                    <input type="text" id="productName" name="Name" class="form-control" required />
-                </div>
-
-                <!-- Поле за категория -->
-                <div>
-                    <label for="productCategory" class="form-label">Категория:</label>
-                    <select id="productCategory" name="Category" class="form-select" required>
-                        <option value="">-- Избери категория --</option>
-                        @foreach (var category in Enum.GetValues(typeof(ProductsCategories)))
-                        {
-                            <option value="@category">@category</option>
-                        }
-                    </select>
-                </div>
-            </div>
-
+        <form method="get" asp-action="AddProduct" asp-controller="Market">
             <!-- Бутон за добавяне -->
             <button type="submit" class="btn btn-primary">Добави продукт</button>
         </form>

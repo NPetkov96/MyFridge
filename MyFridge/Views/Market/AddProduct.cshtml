@@ -1,0 +1,29 @@
+﻿@model MyFridge.Web.ProductsViewModels.AddProductViewModel
+
+@{
+    ViewData["Title"] = "Добави продукт в магазина";
+}
+
+<h2>Добави продукт в магазина</h2>
+
+<form method="post" asp-action="AddProduct" asp-controller="Market">
+    <div class="mb-3">
+        <label for="productName" class="form-label">Име на продукта:</label>
+        <input type="text" id="productName" asp-for="Name" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="productCategory" class="form-label">Категория:</label>
+        <select id="productCategory" asp-for="Category" class="form-select" required>
+            <option value="">-- Избери категория --</option>
+            @foreach (var category in Enum.GetValues(typeof(MyFridge.Common.Enums.ProductsCategories)))
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добави продукт</button>
+</form>
+
+<a asp-action="Index" asp-controller="Market" class="btn btn-secondary mt-3">Обратно към магазина</a>

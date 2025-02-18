@@ -22,17 +22,24 @@ namespace MyFridge.Controllers
             return View(products);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AddProduct()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductViewModel model)
         {
+
             await _productService.AddProductAsync(model);
             return RedirectToAction(nameof(Index)); ;
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddProductInFridge(Guid procutId)
+        public async Task<IActionResult> AddProductInFridge(Guid productId)
         {
-            await _myFridgeService.AddProductAsync(procutId, GetUserId());
+            await _myFridgeService.AddProductAsync(productId, GetUserId());
             return RedirectToAction(nameof(Index)); ;
         }
 
