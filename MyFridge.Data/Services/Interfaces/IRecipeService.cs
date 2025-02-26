@@ -6,7 +6,7 @@ namespace MyFridge.Data.Services.Interfaces
     {
         Task<IEnumerable<RecipeViewModel>> GetAllRecipesAsync();
         Task<RecipeViewModel> GetRecipeAsync(Guid recipeId);
-        Task AddRecipeAsync(RecipeViewModel recipe);
+        Task AddRecipeAsync(AddRecipeViewModel recipe);
         Task UpdateRecipeAsync(RecipeViewModel recipe);
         Task DeleteRecipeAsync(Guid recipeId);
     }

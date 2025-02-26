@@ -1,0 +1,43 @@
+﻿@model MyFridge.Web.RecipeViewModels.AddRecipeViewModel
+
+@{
+    ViewData["Title"] = "Add Recipe";
+}
+
+<h2>Add Recipe</h2>
+
+<form asp-controller="Recipe" asp-action="AddRecipe" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Recipe Name</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Duration" class="control-label">Duration (e.g., 30 mins)</label>
+        <input asp-for="Duration" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Required Products</label>
+        <div id="products-container">
+            <input type="text" class="form-control product-input" name="Products" placeholder="Enter product name" required />
+        </div>
+        <button type="button" class="btn btn-success mt-2" id="add-product">Add Product</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save Recipe</button>
+</form>
+
+@section Scripts {
+    <script>
+        document.getElementById("add-product").addEventListener("click", function () {
+            var container = document.getElementById("products-container");
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "Products";
+            input.className = "form-control product-input mt-2";
+            input.placeholder = "Enter product name";
+            container.appendChild(input);
+        });
+    </script>
+}

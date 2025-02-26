@@ -14,9 +14,24 @@ namespace MyFridge.Data.Services
             this._recipeRepository = recipeRepository;
         }
 
-        public Task AddRecipeAsync(RecipeViewModel recipe)
+        public async Task AddRecipeAsync(AddRecipeViewModel model)
         {
-            throw new NotImplementedException();
+            var recipe = await _recipeRepository.FirstOrDefaultAsync(r => r.Name == model.Name);
+
+            if (recipe != null)
+            {
+                throw new ArgumentException("Recipe already exists");
+            }
+
+            recipe = new Recipe()
+            {
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                Duration = model.Duration,
+                RequiredProducts = model.Products
+            };
+
+            await _recipeRepository.AddAsync(recipe);
         }
 
         public Task DeleteRecipeAsync(Guid recipeId)
