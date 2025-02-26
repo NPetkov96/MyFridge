@@ -45,8 +45,9 @@
             </ul>
 
             <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Детайли</a>
-            <form asp-controller="Recipe" asp-action="DeleteRecipe" asp-route-id="@recipe.Id" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
-                <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+            <form method="post" asp-action="DeleteRecipe" asp-controller="Recipe">
+                <input type="hidden" name="recipeId" value="@recipe.Id" />
+                <button type="submit" class="btn btn-danger">Изтрий</button>
             </form>
         </div>
     </div>

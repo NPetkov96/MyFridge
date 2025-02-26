@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyFridge.Data.Models;
 using MyFridge.Data.Services.Interfaces;
 using MyFridge.Web.RecipeViewModels;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace MyFridge.Controllers
 {
@@ -39,6 +37,13 @@ namespace MyFridge.Controllers
                throw new ArgumentException("Not implemented");
             }
             await _recipeService.AddRecipeAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRecipe(Guid recipeId)
+        {
+            await _recipeService.DeleteRecipeAsync(recipeId);
             return RedirectToAction(nameof(Index));
         }
 

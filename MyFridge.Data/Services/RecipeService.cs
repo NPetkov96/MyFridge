@@ -34,9 +34,11 @@ namespace MyFridge.Data.Services
             await _recipeRepository.AddAsync(recipe);
         }
 
-        public Task DeleteRecipeAsync(Guid recipeId)
+        public async Task DeleteRecipeAsync(Guid recipeId)
         {
-            throw new NotImplementedException();
+            var recipe = await _recipeRepository.GetByIdAsync(recipeId);
+
+            await _recipeRepository.DeleteAsync(recipe);
         }
 
         public async Task<IEnumerable<RecipeViewModel>> GetAllRecipesAsync()
