@@ -18,10 +18,8 @@
                     {
                         <li>
                             @item.Name (@item.Category)
-                            <form method="post" asp-action="DeleteProductInShoppingList" asp-controller="ShoppingList" style="display:inline;">
-                                <input type="hidden" name="productId" value="@item.Id" />
-                                <button type="submit" class="btn btn-danger btn-sm">X</button>
-                            </form>
+                            <button type="button" class="btn btn-danger btn-sm delete-product" data-id="@item.Id">X</button>
+                            <button type="button" class="btn btn-success btn-sm add-to-fridge" data-id="@item.Id">✓</button>
                         </li>
                     }
                 </ul>
