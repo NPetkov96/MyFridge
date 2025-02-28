@@ -1,7 +1,6 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyFridge.Data.Services.Interfaces;
-using MyFridge.Web.ProductsViewModels;
+using System.Security.Claims;
 
 namespace MyFridge.Controllers
 {

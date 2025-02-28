@@ -27,25 +27,40 @@ $(document).on("click", ".add-to-fridge", function () {
     var button = $(this);
     var productId = button.data("id");
 
-    console.log("Добавяне на продукт в хладилника, ID:", productId); // За дебъг
+    console.log("Добавяне в хладилника, ID:", productId);
 
+    // Първа заявка: Добавяне в хладилника
     $.ajax({
         url: "/MyFridge/AddProductInFridge",
         type: "POST",
         data: { productId: productId.toString() },
         success: function () {
             console.log("Продуктът е добавен в хладилника!");
-            button.closest("li").fadeOut(500, function () { $(this).remove(); });
 
-            // Проверяваме дали списъкът е празен и показваме съобщение
-            if ($("#shoppingList li").length === 0) {
-                $("#shoppingList").hide();
-                $("#emptyMessage").show();
-            }
+            // Втора заявка: Изтриване от шопинг листа
+            $.ajax({
+                url: "/ShoppingList/DeleteProductInShoppingList",
+                type: "POST",
+                data: { productId: productId.toString() },
+                success: function () {
+                    console.log("Продуктът е премахнат от шопинг листа.");
+                    button.closest("li").fadeOut(500, function () { $(this).remove(); });
+
+                    // Проверяваме дали списъкът е празен и показваме съобщение
+                    if ($("#shoppingList li").length === 0) {
+                        $("#shoppingList").hide();
+                        $("#emptyMessage").show();
+                    }
+                },
+                error: function (xhr) {
+                    console.error("Грешка при изтриване от шопинг листа:", xhr.responseText);
+                }
+            });
         },
         error: function (xhr) {
-            console.error("Грешка при добавяне:", xhr.responseText);
+            console.error("Грешка при добавяне в хладилника:", xhr.responseText);
         }
     });
 });
+
 
