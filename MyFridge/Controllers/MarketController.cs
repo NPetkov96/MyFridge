@@ -23,7 +23,7 @@ namespace MyFridge.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddProduct()
+        public IActionResult AddProduct()
         {
             return View();
         }

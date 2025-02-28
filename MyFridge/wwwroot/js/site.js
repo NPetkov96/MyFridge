@@ -4,6 +4,8 @@
 // Write your JavaScript code.
 
 // jQuery за изтриване на продукт от списъка
+
+//Adding product in ShoppingList from Market
 $(document).ready(function () {
     $(".delete-product").click(function () {
         var button = $(this);
@@ -23,6 +25,7 @@ $(document).ready(function () {
     });
 });
 
+//Adding product in MyFridge from ShoppingList
 $(document).on("click", ".add-to-fridge", function () {
     var button = $(this);
     var productId = button.data("id");
@@ -63,4 +66,26 @@ $(document).on("click", ".add-to-fridge", function () {
     });
 });
 
+$(document).on("click", ".add-to-shopping-list", function () {
+    var button = $(this);
+    var productName = button.data("product");
+
+    console.log("Добавяне в списъка за пазаруване:", productName);
+
+    $.ajax({
+        url: "/ShoppingList/AddProductInShoppingList",
+        type: "GET",
+        data: { productName: productName },
+        success: function () {
+            console.log("Продуктът е добавен в шопинг листа!");
+
+            // Променяме бутона, за да покажем, че продуктът е добавен
+            button.removeClass("btn-warning").addClass("btn-success").text("Добавено ✓");
+            button.prop("disabled", true); // Деактивираме бутона
+        },
+        error: function (xhr) {
+            console.error("Грешка при добавяне в шопинг листа:", xhr.responseText);
+        }
+    });
+});
 

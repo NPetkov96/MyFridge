@@ -33,7 +33,7 @@ namespace MyFridge.Data.Services
             var product = await _productSercice.GetProductByName(productName);
             if (product == null)
             {
-                return;
+                throw new ArgumentNullException();
             }
 
             var listProduct = new ShoppingListProducts()

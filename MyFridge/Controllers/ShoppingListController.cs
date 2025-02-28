@@ -22,15 +22,23 @@ namespace MyFridge.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProductInShoppingList(Guid productId)
         {
-            await _shoppingListService.AddProductInShoppingList(productId,GetUserId());
+            await _shoppingListService.AddProductInShoppingList(productId, GetUserId());
             return RedirectToAction(nameof(Index), "Market");
         }
 
         [HttpGet]
         public async Task<IActionResult> AddProductInShoppingList(string productName)
         {
-            await _shoppingListService.AddProductInShoppingList(productName, GetUserId());
-            return RedirectToAction(nameof(Index), "Market");
+            try
+            {
+                await _shoppingListService.AddProductInShoppingList(productName, GetUserId());
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AddProduct", "Market");
+            }
+            return Ok(); // Връща 200 OK за AJAX
+            //return RedirectToAction(nameof(Index), "Market");
         }
 
         [HttpPost]

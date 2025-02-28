@@ -16,7 +16,7 @@
                 <ul>
                     @foreach (var item in Model)
                     {
-                        <li>
+                        <li id="product-@item.Id">
                             @item.Name (@item.Category)
                             <button type="button" class="btn btn-danger btn-sm delete-product" data-id="@item.Id">X</button>
                             <button type="button" class="btn btn-success btn-sm add-to-fridge" data-id="@item.Id">✓</button>
@@ -26,7 +26,7 @@
             }
             else
             {
-                <p>Все още няма добавени продукти.</p>
+                <p id="emptyMessage">Все още няма добавени продукти.</p>
             }
         </div>
     </div>
