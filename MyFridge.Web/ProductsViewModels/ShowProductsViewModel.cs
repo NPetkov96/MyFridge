@@ -7,6 +7,8 @@
 
         public string Category { get; set; }
 
+        public double Quantity { get; set; }
+
         public Guid UserId { get; set; }
     }
 }

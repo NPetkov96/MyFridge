@@ -22,12 +22,6 @@ namespace MyFridge.Controllers
             return View(products);
         }
 
-        //[HttpGet]
-        //public IActionResult AddProduct()
-        //{
-        //    return View();
-        //}
-
         [HttpGet]
         public IActionResult AddProduct(string productName)
         {

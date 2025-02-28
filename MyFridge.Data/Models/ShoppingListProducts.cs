@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MyFridge.Data.Models
+﻿namespace MyFridge.Data.Models
 {
     public class ShoppingListProducts
     {
@@ -9,5 +7,7 @@ namespace MyFridge.Data.Models
 
         public Guid ProductId { get; set; }
         public Product Product { get; set; } = null!;
+
+
     }
 }

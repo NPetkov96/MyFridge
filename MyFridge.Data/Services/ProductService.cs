@@ -47,6 +47,7 @@ namespace MyFridge.Data.Services
                     Id = p.Id,
                     Name = p.Name,
                     Category = p.Categories.ToString(),
+                    Quantity = p.Quantity
                 })
                 .OrderBy(p => p.Name)
                 .ToList();

@@ -28,7 +28,6 @@
         <!-- Форма за добавяне на нов продукт -->
         <h5 class="table table-bordered table-responsive w-auto mt-5">Добави нов продукт</h5>
         <form method="get" asp-action="AddProduct" asp-controller="Market">
-            <!-- Бутон за добавяне -->
             <button type="submit" class="btn btn-primary">Добави продукт</button>
         </form>
 
@@ -43,6 +42,7 @@
                     <tr>
                         <th>Име на продукта</th>
                         <th>Категория</th>
+                        <th>Количество</th>
                         <th>Действие</th>
                     </tr>
                 </thead>
@@ -53,14 +53,19 @@
                             <td>@product.Name</td>
                             <td>@product.Category</td>
                             <td>
+                                <input type="number" class="form-control quantity-input" name="quantity" min="1" value="1" />
+                            </td>
+                            <td>
                                 <div class="d-flex gap-3">
                                     <form method="post" asp-action="AddProductInFridge" asp-controller="MyFridge">
                                         <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-success">Добави в хладилника</button>
+                                        <input type="hidden" class="quantity-field" name="quantity" value="1" />
+                                        <button type="button" class="btn btn-success add-to-fridge" data-id="@product.Id">Добави в хладилника</button>
                                     </form>
                                     <form method="post" asp-action="AddProductInShoppingList" asp-controller="ShoppingList">
                                         <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-primary">Добави в списък</button>
+                                        <input type="hidden" class="quantity-field" name="quantity" value="1" />
+                                        <button type="submit" class="btn btn-primary add-to-list">Добави в списък</button>
                                     </form>
                                     <form method="post" asp-action="DeleteProduct" asp-controller="Market">
                                         <input type="hidden" name="productId" value="@product.Id" />
@@ -76,3 +81,18 @@
     </div>
 </div>
 
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".quantity-input").forEach(input => {
+                input.addEventListener("input", function () {
+                    let quantity = this.value;
+                    let parentRow = this.closest("tr");
+                    parentRow.querySelectorAll(".quantity-field").forEach(hiddenInput => {
+                        hiddenInput.value = quantity;
+                    });
+                });
+            });
+        });
+    </script>
+}

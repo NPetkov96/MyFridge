@@ -25,7 +25,7 @@ else
             @foreach (var product in Model)
             {
                 <tr>
-                    <td>@product.Name</td>
+                    <td>@product.Name - @product.Quantity</td>
                     <td>@product.Category</td>
                     <td>
                         <div class="d-flex gap-2">
