@@ -33,7 +33,7 @@ namespace MyFridge.Data.Services
             var product = await _productSercice.GetProductByName(productName);
             if (product == null)
             {
-                throw new ArgumentNullException();
+                throw new KeyNotFoundException($"Продуктът '{productName}' не е намерен.");
             }
 
             var listProduct = new ShoppingListProducts()

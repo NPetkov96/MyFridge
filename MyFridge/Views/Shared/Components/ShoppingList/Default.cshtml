@@ -17,7 +17,7 @@
                     @foreach (var item in Model)
                     {
                         <li id="product-@item.Id">
-                            @item.Name (@item.Category)
+                            @item.Name
                             <button type="button" class="btn btn-danger btn-sm delete-product" data-id="@item.Id">X</button>
                             <button type="button" class="btn btn-success btn-sm add-to-fridge" data-id="@item.Id">✓</button>
                         </li>

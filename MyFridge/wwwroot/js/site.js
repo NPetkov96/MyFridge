@@ -66,26 +66,27 @@ $(document).on("click", ".add-to-fridge", function () {
     });
 });
 
-$(document).on("click", ".add-to-shopping-list", function () {
-    var button = $(this);
-    var productName = button.data("product");
+//$(document).on("click", ".add-to-shopping-list", function () {
+//    var button = $(this);
+//    var productName = button.data("product");
 
-    console.log("Добавяне в списъка за пазаруване:", productName);
+//    console.log("Добавяне в списъка за пазаруване:", productName);
 
-    $.ajax({
-        url: "/ShoppingList/AddProductInShoppingList",
-        type: "GET",
-        data: { productName: productName },
-        success: function () {
-            console.log("Продуктът е добавен в шопинг листа!");
+//    $.ajax({
+//        url: "/ShoppingList/AddProductInShoppingList",
+//        type: "GET",
+//        data: { productName: productName },
+//        success: function () {
+//            console.log("Продуктът е добавен в шопинг листа!");
 
-            // Променяме бутона, за да покажем, че продуктът е добавен
-            button.removeClass("btn-warning").addClass("btn-success").text("Добавено ✓");
-            button.prop("disabled", true); // Деактивираме бутона
-        },
-        error: function (xhr) {
-            console.error("Грешка при добавяне в шопинг листа:", xhr.responseText);
-        }
-    });
-});
+//            // Променяме бутона, за да покажем, че продуктът е добавен
+//            button.removeClass("btn-warning").addClass("btn-success").text("Добавено ✓");
+//            button.prop("disabled", true); // Деактивираме бутона
+//        },
+//        error: function (xhr) {
+//            console.error("Грешка при добавяне в шопинг листа:", xhr.responseText);
+//        }
+//    });
+//});
+
 
