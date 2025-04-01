@@ -243,7 +243,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -450,7 +450,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
 
                     b.HasData(
                         new
@@ -544,7 +544,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingListsProducts");
+                    b.ToTable("ShoppingListsProducts", (string)null);
                 });
 
             modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
@@ -559,7 +559,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UsersProducts");
+                    b.ToTable("UsersProducts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
