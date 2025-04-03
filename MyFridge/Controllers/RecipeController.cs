@@ -52,6 +52,5 @@ namespace MyFridge.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return Guid.Parse(userId!);
         }
-
     }
 }

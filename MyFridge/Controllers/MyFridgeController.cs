@@ -8,7 +8,6 @@ namespace MyFridge.Controllers
     {
         private readonly IMyFridgeService _myFridgeService;
 
-
         public MyFridgeController(IMyFridgeService myFridgeService)
         {
             this._myFridgeService = myFridgeService;

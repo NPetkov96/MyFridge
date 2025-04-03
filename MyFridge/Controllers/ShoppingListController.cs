@@ -32,14 +32,12 @@ namespace MyFridge.Controllers
             try
             {
                 await _shoppingListService.AddProductInShoppingList(productName, GetUserId());
-                //return Ok(); // Връща 200 OK за AJAX
                 return RedirectToAction(nameof(Index), "Recipe");
             }
             catch (KeyNotFoundException)
             {
                 return RedirectToAction("AddProduct", "Market", new { productName = productName });
             }
-            //return RedirectToAction(nameof(Index), "Market");
         }
 
         [HttpPost]
