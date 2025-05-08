@@ -13,6 +13,8 @@ namespace MyFridge.Data.Models
 
         public string Duration { get; set; }
 
+        public string Description { get; set; }
+
         [NotMapped] // Казваме на EF Core да не създава директно List<string> в базата
         public List<string> RequiredProducts
         {

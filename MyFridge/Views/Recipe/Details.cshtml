@@ -1,0 +1,22 @@
+﻿@using MyFridge.Web.RecipeViewModels
+@model RecipeViewModel
+
+@{
+    ViewData["Title"] = "Детайли за Рецепта";
+}
+
+<h1>@Model.Name</h1>
+
+<p><strong>Описание:</strong> @Model.Description</p>
+
+<h3>Продукти:</h3>
+<ul>
+    @foreach (var product in Model.RequiredProducts)
+    {
+        <li>@product</li>
+    }
+</ul>
+
+<a asp-controller="Recipe" asp-action="Edit" asp-route-recipeId="@Model.Id" class="btn btn-warning">Редактирай</a>
+<a asp-controller="Recipe" asp-action="Delete" asp-route-recipeId="@Model.Id" class="btn btn-danger">Изтрий</a>
+<a asp-controller="Recipe" asp-action="Index" class="btn btn-secondary">Назад</a>

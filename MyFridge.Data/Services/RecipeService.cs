@@ -28,7 +28,8 @@ namespace MyFridge.Data.Services
                 Id = Guid.NewGuid(),
                 Name = model.Name,
                 Duration = model.Duration,
-                RequiredProducts = model.Products
+                RequiredProducts = model.Products,
+                Description = model.Description
             };
 
             await _recipeRepository.AddAsync(recipe);
@@ -56,9 +57,18 @@ namespace MyFridge.Data.Services
                 .ToList();
         }
 
-        public Task<RecipeViewModel> GetRecipeAsync(Guid recipeId)
+        public async Task<RecipeViewModel> GetRecipeAsync(Guid recipeId)
         {
-            throw new NotImplementedException();
+            var recipe = await _recipeRepository.GetByIdAsync(recipeId);
+            
+            return new RecipeViewModel()
+            {
+                Id = recipe.Id,
+                Name = recipe.Name,
+                Duration = recipe.Duration,
+                RequiredProducts = recipe.RequiredProducts,
+                Description = recipe.Description
+            };
         }
 
         public Task UpdateRecipeAsync(RecipeViewModel recipe)

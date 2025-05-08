@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public string Duration { get; set; }
         public IEnumerable<string> RequiredProducts { get; set; } = new List<string>();
+        public string Description { get; set; }
     }
 }

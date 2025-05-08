@@ -243,7 +243,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
@@ -434,6 +434,10 @@ namespace MyFridge.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Duration")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -450,12 +454,13 @@ namespace MyFridge.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("d2b5d3c1-5f5b-4a0b-9c3b-1b27c8a441f8"),
+                            Description = "Класическа италианска рецепта със спагети, яйца, бекон и пармезан.",
                             Duration = "30 минути",
                             Name = "Спагети Карбонара",
                             _requiredProducts = "[\"\\u0421\\u043F\\u0430\\u0433\\u0435\\u0442\\u0438\",\"\\u042F\\u0439\\u0446\\u0430\",\"\\u0411\\u0435\\u043A\\u043E\\u043D\",\"\\u041F\\u0430\\u0440\\u043C\\u0435\\u0437\\u0430\\u043D\",\"\\u0427\\u0435\\u0440\\u0435\\u043D \\u043F\\u0438\\u043F\\u0435\\u0440\"]"
@@ -463,6 +468,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("a6b62c13-d673-4d6f-92c9-9c0f253f7a4b"),
+                            Description = "Свежа салата с домати, краставици, лук и настъргано сирене.",
                             Duration = "15 минути",
                             Name = "Шопска салата",
                             _requiredProducts = "[\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\",\"\\u041A\\u0440\\u0430\\u0441\\u0442\\u0430\\u0432\\u0438\\u0446\\u0438\",\"\\u0421\\u0438\\u0440\\u0435\\u043D\\u0435\",\"\\u041B\\u0443\\u043A\",\"\\u0417\\u0435\\u0445\\u0442\\u0438\\u043D\"]"
@@ -470,6 +476,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("b19a6c98-2a4b-4f3d-b7c5-89e8f93a21d7"),
+                            Description = "Традиционно българско ястие с картофи и кайма.",
                             Duration = "1 час",
                             Name = "Мусака",
                             _requiredProducts = "[\"\\u041A\\u0430\\u0440\\u0442\\u043E\\u0444\\u0438\",\"\\u041A\\u0430\\u0439\\u043C\\u0430\",\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\",\"\\u041B\\u0443\\u043A\",\"\\u042F\\u0439\\u0446\\u0430\",\"\\u041A\\u0438\\u0441\\u0435\\u043B\\u043E \\u043C\\u043B\\u044F\\u043A\\u043E\"]"
@@ -477,6 +484,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("c2f8a1b3-62d5-4d4a-89f6-5a2b3c8d74e9"),
+                            Description = "Класическо ястие с пиле, ориз и зеленчуци, изпечени във фурна.",
                             Duration = "45 минути",
                             Name = "Пиле с ориз",
                             _requiredProducts = "[\"\\u041F\\u0438\\u043B\\u0435\\u0448\\u043A\\u043E \\u043C\\u0435\\u0441\\u043E\",\"\\u041E\\u0440\\u0438\\u0437\",\"\\u0427\\u0443\\u0448\\u043A\\u0438\",\"\\u041C\\u043E\\u0440\\u043A\\u043E\\u0432\\u0438\",\"\\u041F\\u043E\\u0434\\u043F\\u0440\\u0430\\u0432\\u043A\\u0438\"]"
@@ -484,6 +492,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("e3d7b8c2-49f5-4a6b-98a1-b3c8d62e5f47"),
+                            Description = "Прясна сьомга, приготвена на скара с лимон и подправки.",
                             Duration = "30 минути",
                             Name = "Риба на скара",
                             _requiredProducts = "[\"\\u0421\\u044C\\u043E\\u043C\\u0433\\u0430\",\"\\u041B\\u0438\\u043C\\u043E\\u043D\",\"\\u0417\\u0435\\u0445\\u0442\\u0438\\u043D\",\"\\u0421\\u043E\\u043B\",\"\\u0427\\u0435\\u0441\\u044A\\u043D\"]"
@@ -491,6 +500,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("f4a9c7b2-5d4e-4f3a-89b6-2c8d5a7e93f1"),
+                            Description = "Българска баница със сирене и яйца, изпечена със златиста коричка.",
                             Duration = "50 минути",
                             Name = "Баница",
                             _requiredProducts = "[\"\\u042F\\u0439\\u0446\\u0430\",\"\\u0421\\u0438\\u0440\\u0435\\u043D\\u0435\",\"\\u041A\\u043E\\u0440\\u0438 \\u0437\\u0430 \\u0431\\u0430\\u043D\\u0438\\u0446\\u0430\",\"\\u041C\\u0430\\u0441\\u043B\\u043E\",\"\\u0421\\u043E\\u0434\\u0430 \\u0431\\u0438\\u043A\\u0430\\u0440\\u0431\\u043E\\u043D\\u0430\\u0442\"]"
@@ -498,6 +508,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("a7d4e2b3-69f8-4c3a-b5d7-92c8e1f3a45b"),
+                            Description = "Класическа италианска пица с домати, моцарела и босилек.",
                             Duration = "35 минути",
                             Name = "Пица Маргарита",
                             _requiredProducts = "[\"\\u0411\\u0440\\u0430\\u0448\\u043D\\u043E\",\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\",\"\\u041C\\u043E\\u0446\\u0430\\u0440\\u0435\\u043B\\u0430\",\"\\u0417\\u0435\\u0445\\u0442\\u0438\\u043D\",\"\\u0411\\u043E\\u0441\\u0438\\u043B\\u0435\\u043A\"]"
@@ -505,6 +516,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("b9c2e7d5-4f6a-3a8b-95d1-f3c84e7a29b3"),
+                            Description = "Пълнозърнеста лазаня с кайма, доматен сос и бешамел.",
                             Duration = "1 час 15 минути",
                             Name = "Лазаня Болонезе",
                             _requiredProducts = "[\"\\u041B\\u0430\\u0437\\u0430\\u043D\\u044F \\u043A\\u043E\\u0440\\u0438\",\"\\u041A\\u0430\\u0439\\u043C\\u0430\",\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0435\\u043D \\u0441\\u043E\\u0441\",\"\\u041C\\u043E\\u0446\\u0430\\u0440\\u0435\\u043B\\u0430\",\"\\u0411\\u0435\\u0448\\u0430\\u043C\\u0435\\u043B\"]"
@@ -512,6 +524,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("d8f4b2a6-79e3-4c5a-98d1-b3c7a5e29f48"),
+                            Description = "Мексикански сос с авокадо, лайм и зеленчуци.",
                             Duration = "10 минути",
                             Name = "Гуакамоле",
                             _requiredProducts = "[\"\\u0410\\u0432\\u043E\\u043A\\u0430\\u0434\\u043E\",\"\\u041B\\u0430\\u0439\\u043C\",\"\\u041B\\u0443\\u043A\",\"\\u0427\\u0435\\u0441\\u044A\\u043D\",\"\\u0414\\u043E\\u043C\\u0430\\u0442\\u0438\"]"
@@ -519,6 +532,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("c3e7d9b5-6a4f-8b2a-91d3-5c7a29f48e62"),
+                            Description = "Кремообразен десерт с бисквитена основа и крем сирене.",
                             Duration = "2 часа",
                             Name = "Чийзкейк",
                             _requiredProducts = "[\"\\u0411\\u0438\\u0441\\u043A\\u0432\\u0438\\u0442\\u0438\",\"\\u041A\\u0440\\u0435\\u043C \\u0441\\u0438\\u0440\\u0435\\u043D\\u0435\",\"\\u0417\\u0430\\u0445\\u0430\\u0440\",\"\\u042F\\u0439\\u0446\\u0430\",\"\\u0412\\u0430\\u043D\\u0438\\u043B\\u0438\\u044F\"]"
@@ -526,6 +540,7 @@ namespace MyFridge.Data.Migrations
                         new
                         {
                             Id = new Guid("f2b3c7e9-4d6a-5a8b-91d4-3c7a5e29f68b"),
+                            Description = "Освежаваща напитка с лимони, мента и мед.",
                             Duration = "15 минути",
                             Name = "Домашна лимонада",
                             _requiredProducts = "[\"\\u041B\\u0438\\u043C\\u043E\\u043D\\u0438\",\"\\u0412\\u043E\\u0434\\u0430\",\"\\u041C\\u0435\\u0434\",\"\\u041C\\u0435\\u043D\\u0442\\u0430\",\"\\u041B\\u0435\\u0434\"]"
@@ -544,7 +559,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingListsProducts", (string)null);
+                    b.ToTable("ShoppingListsProducts");
                 });
 
             modelBuilder.Entity("MyFridge.Data.Models.UserProduct", b =>
@@ -559,7 +574,7 @@ namespace MyFridge.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UsersProducts", (string)null);
+                    b.ToTable("UsersProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

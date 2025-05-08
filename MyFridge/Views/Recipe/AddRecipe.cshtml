@@ -18,6 +18,11 @@
     </div>
 
     <div class="form-group">
+        <label asp-for="Description" class="control-label">Description</label>
+        <input asp-for="Description" class="form-control" required />
+    </div>
+
+    <div class="form-group">
         <label class="control-label">Required Products</label>
         <div id="products-container">
             <input type="text" class="form-control product-input" name="Products" placeholder="Enter product name" required />

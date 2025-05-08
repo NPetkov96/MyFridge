@@ -47,6 +47,13 @@ namespace MyFridge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid recipeId)
+        {
+            var recipe = await _recipeService.GetRecipeAsync(recipeId);            
+            return View(recipe);
+        }
+
         private Guid GetUserId()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

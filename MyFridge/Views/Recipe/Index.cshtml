@@ -44,7 +44,7 @@
                 }
             </ul>
 
-            <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Детайли</a>
+            <a asp-action="Details" method="get" asp-route-recipeId="@recipe.Id" class="btn btn-primary">Детайли</a>
             <form method="post" asp-action="DeleteRecipe" asp-controller="Recipe">
                 <input type="hidden" name="recipeId" value="@recipe.Id" />
                 <button type="submit" class="btn btn-danger">Изтрий</button>
